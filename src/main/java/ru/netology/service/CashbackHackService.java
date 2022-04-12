@@ -1,9 +1,43 @@
 package ru.netology.service;
 
-public class CashbackHackService {
-    private final int boundary = 1000;
+import org.testng.annotations.Test;
 
-    public int remain(int amount) {
-        return boundary - amount % boundary;
+import static org.testng.Assert.*;
+
+public class CashbackHackServiceTest {
+
+    CashbackHackService service=new CashbackHackService();
+
+    @Test
+    public void rightCashBackLessBoundary() {
+        int actual = service.remain(880);
+        int expect = 120;
+
+        assertEquals(actual, expect);
     }
+
+    @Test
+    public void rightCashBackMoreBoundary() {
+        int actual = service.remain(101120);
+        int expect = 880;
+
+        assertEquals(actual, expect);
+    }
+
+    @Test
+    public void boundaryAmount() {
+        int actual = service.remain(1000);
+        int expect = 0;
+
+        assertEquals(actual, expect);
+    }
+
+    @Test
+    public void zeroAmount() {
+        int actual = service.remain(0);
+        int expect = 0;
+
+        assertEquals(actual, expect);
+    }
+
 }
