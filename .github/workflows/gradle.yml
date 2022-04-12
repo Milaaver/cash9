@@ -7,6 +7,7 @@
 
 name: Java CI with Gradle
 
+chmod +x gradlew
 
 on: [ push, pull_request ]
 
